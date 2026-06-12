@@ -37,6 +37,7 @@ df = load_data()
 def load_gru_model():
     model = load_model(
         "models/best_gru_model.keras",
+        safe_mode=False,
         compile=False
     )
     return model
