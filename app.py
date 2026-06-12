@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-
-from tensorflow.keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 
 # =====================================================
@@ -32,13 +30,25 @@ df = load_data()
 # =====================================================
 # LOAD MODEL
 # =====================================================
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import GRU, Dropout, Dense
 
 @st.cache_resource
 def load_gru_model():
-    model = load_model(
-    "models/best_gru_model.h5",
-    compile=False
-    )
+
+    model = Sequential([
+        GRU(
+            units=50,
+            return_sequences=False,
+            input_shape=(60, 1)
+        ),
+        Dropout(0.2),
+        Dense(25, activation="relu"),
+        Dense(1)
+    ])
+
+    model.load_weights("models/gru_weights.weights.h5")
+
     return model
 
 model = load_gru_model()
