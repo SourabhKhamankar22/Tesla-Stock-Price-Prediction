@@ -1,8 +1,8 @@
-streamlit
+streamlit==1.46.1
 numpy
 pandas
 matplotlib
-tensorflow=2.21.0
 scikit-learn
 joblib
-keras=3.14.1
+tensorflow
+keras
