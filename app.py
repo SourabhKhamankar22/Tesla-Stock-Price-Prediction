@@ -36,9 +36,8 @@ df = load_data()
 @st.cache_resource
 def load_gru_model():
     model = load_model(
-        "models/best_gru_model.keras",
-        safe_mode=False,
-        compile=False
+    "models/best_gru_model.h5",
+    compile=False
     )
     return model
 
